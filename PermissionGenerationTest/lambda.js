@@ -1,5 +1,6 @@
 let AWS = require('aws-sdk');
 const sns = new AWS.SNS();
+const util = require('./util');
 
 exports.handler = function (event, context, callback) {
     sns.publish({
@@ -9,7 +10,7 @@ exports.handler = function (event, context, callback) {
         TopicArn: 'arn:aws:sns:us-east-1:318300609668:TestSNS'
     }).promise()
         .then(data => {
-            // your code goes here
+            util.sendSMS("+94123456789", "hello");
         })
         .catch(err => {
             // error handling goes here
